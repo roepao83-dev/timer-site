@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time</title>
+<link rel="stylesheet" href="syle.css">
+<link rel="shortcut icon" href="images/logotip" type="image/x-icon">
+</head>
+<body>
+    
+   <header class="time">
+    <div class="header_countainer">
+        <nav class="header_nav">     
+            <img class="image" src="images/time" alt="" width="150" height="50">
+      
+            <ul class="header_list">
+                <li class="header_list-item">
+                    <a class="header_list-link active" href="file.html"> Главная Страница</a>
+                </li>
+            </ul>
+            <a class="knock speashel" href="knock.html"> <h4>Вписать Дату </h4> </a>
+        
+        </nav>
+    </div>
+   </header> 
+   <main>
+    <section class="hero">
+        <div class="hero_container">
+                <div class="hero_container active">
+                    <h2>Добавить событие</h2>
+                    <input class="hero_container-item" type="text" id="eventInput" placeholder="Введите событие">
+                    <button class="hero_container-live" onclick="saveEvent()">Сохранить</button>
+                </div>
+            <div class="hero_content">
+                <div class="hero_text">
+                </div>    
+            </div>
+        </div>
+    </section>
+   </main>
+   <script>
+const container = document.querySelector(".hero_container.active");
+
+// создаём поле даты
+const dateInput = document.createElement("input");
+dateInput.type = "date";
+dateInput.id = "dateInput";
+
+// создаём поле времени
+const timeInput = document.createElement("input");
+timeInput.type = "time";
+timeInput.id = "timeInput";
+
+// вставляем перед кнопкой
+const button = document.querySelector(".hero_container-live");
+
+container.insertBefore(dateInput, button);
+container.insertBefore(timeInput, button);
+</script>
+   <script>
+function saveEvent() {
+    const text = document.getElementById("eventInput").value;
+    const date = document.getElementById("dateInput").value;
+    const time = document.getElementById("timeInput").value;
+
+    if (!text || !date) {
+        alert("Заполни событие и дату!");
+        return;
+    }
+
+    let events = JSON.parse(localStorage.getItem("events")) || [];
+
+    const fullDate = time ? `${date}T${time}` : `${date}T00:00`;
+
+     const firebaseConfig = {
+      apiKey: "AIzaSyC0AZQoNHdRKuOReUWlKebgrjWjY235aLI",
+      authDomain: "timer-6e144.firebaseapp.com",
+      projectId: "timer-6e144"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    db.collection("events").add({
+        text: text,
+        date: fullDate
+    });
+    alert("Сохранено!");
+
+    document.getElementById("eventInput").value = "";
+    document.getElementById("dateInput").value = "";
+    document.getElementById("timeInput").value = "";
+}
+</script>
+
+</body>
+</html>
