@@ -39,26 +39,41 @@
         </div>
     </section>
    </main>
-   <script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyC0AZQoNHdRKuOReUWlKebgrjWjY235aLI",
+  authDomain: "timer-6e144.firebaseapp.com",
+  projectId: "timer-6e144"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+
+// ================= СОЗДАНИЕ ПОЛЕЙ =================
 const container = document.querySelector(".hero_container.active");
 
-// создаём поле даты
+// поле даты
 const dateInput = document.createElement("input");
 dateInput.type = "date";
 dateInput.id = "dateInput";
 
-// создаём поле времени
+// поле времени
 const timeInput = document.createElement("input");
 timeInput.type = "time";
 timeInput.id = "timeInput";
 
-// вставляем перед кнопкой
+// кнопка
 const button = document.querySelector(".hero_container-live");
 
+// вставка
 container.insertBefore(dateInput, button);
 container.insertBefore(timeInput, button);
-</script>
-   <script>
+
+
+// ================= СОХРАНЕНИЕ =================
 function saveEvent() {
     const text = document.getElementById("eventInput").value;
     const date = document.getElementById("dateInput").value;
@@ -69,30 +84,24 @@ function saveEvent() {
         return;
     }
 
-    let events = JSON.parse(localStorage.getItem("events")) || [];
-
     const fullDate = time ? `${date}T${time}` : `${date}T00:00`;
-
-     const firebaseConfig = {
-      apiKey: "AIzaSyC0AZQoNHdRKuOReUWlKebgrjWjY235aLI",
-      authDomain: "timer-6e144.firebaseapp.com",
-      projectId: "timer-6e144"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
 
     db.collection("events").add({
         text: text,
         date: fullDate
-    });
-    alert("Сохранено!");
+    })
+    .then(() => {
+        alert("Сохранено!");
 
-    document.getElementById("eventInput").value = "";
-    document.getElementById("dateInput").value = "";
-    document.getElementById("timeInput").value = "";
+        document.getElementById("eventInput").value = "";
+        document.getElementById("dateInput").value = "";
+        document.getElementById("timeInput").value = "";
+    })
+    .catch((error) => {
+        console.error(error);
+        alert("Ошибка!");
+    });
 }
 </script>
-
 </body>
 </html>
