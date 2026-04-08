@@ -12,12 +12,15 @@
     margin: 0;
     padding: 0;
 }
+
 .time{
     padding-block: 30px ; 
 }
+
 .image{
     transition: 0.5s;
 }
+
 .knock{
     font-weight: 700;
     font-size: 15px;
@@ -28,71 +31,81 @@
     border-radius: 15px;
     transition: 0.3s;
 }
+
 .knock:hover{
     color: var(--dark);
     opacity:95%;
 }
+
 .header_countainer{
     max-width: 1069px;
     margin-inline: auto;
 }
+
 .header_nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .header_list{
     display: flex;
     gap: 49px;
 }
+
 a{
     text-decoration: none;
 }
+
 ul{
    list-style: none;
 }
+
 .header_list-link{
     font-size: 20px;
     color: var(--gray);
     transition: 0.3s;
 }
+
 .header_list-link.active{
     color:var(--dark);
     border-bottom: var(--blue) solid;
     padding-bottom: 5px;
 }
+
 .header_list-link:hover{
     color: var(--dark);
 }
+
 .hero{
     padding-block: 50px;
 }
-
 
 .hero_title{
     line-height: 77px;
     font-weight: 700;
     font-size: 15px;
 }
+
 .hero_desc{
     font-family:"Mulish", sans-serif;
     font-size: 20px;
     line-height: 30px;
-
 }
+
 .hero_container{
     position: relative;
-    min-height: 600px; /* чтобы блок был достаточно большим */
+    min-height: 600px;
 }
 
 .hero_images{
     position: absolute;
     top: 0;
-    left: 75%; /* вместо padding-left */
+    left: 75%;
     transform: translateX(-50%);
     width: 400px;
     height: 500px;
-    z-index: 0; /* чтобы не перекрывал текст */
+    z-index: 0;
 }
 
 .hero_text {
@@ -102,15 +115,18 @@ ul{
     gap: 20px;
     padding: 20px;
 }
+
 .hero_text-item{
     padding: 0 20px 0 150px;
     font-size: 35px;
 }
+
 .hero_text-list{
     padding: 0 20px 0 150px;
     color: var(--dark);
     font-size: 20px;
 }
+
 #events {
     margin-top: 20px;
     padding-left: 150px;
@@ -121,13 +137,13 @@ ul{
 
 .event-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background: #f3f3f3;
     padding: 12px 15px;
     border-radius: 10px;
     width: 520px;
     box-sizing: border-box;
+    gap: 10px;
 }
 
 .event-item button {
@@ -137,25 +153,64 @@ ul{
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    text-align: center;
     min-width: 80px;
 }
 
 .event-item button:hover {
     opacity: 0.8;
 }
+
 .event-item span {
-    max-width: 65%;
+    max-width: 60%;
 }
 
 .btn-box {
     display: flex;
     gap: 6px;
+    margin-left: auto;
 }
+
 .timer {
     font-size: 14px;
     color: var(--gray);
-    margin-left: auto;
-    margin-right: 10px;
     white-space: nowrap;
+}
+
+/* 🔥 АДАПТИВ ДЛЯ ТЕЛЕФОНА */
+@media (max-width: 768px) {
+
+    .hero_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero_images {
+        position: static;
+        transform: none;
+        width: 250px;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .hero_text-item,
+    .hero_text-list,
+    #events {
+        padding: 0 20px;
+    }
+
+    .event-item {
+        width: 100%;
+        max-width: 350px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-box {
+        margin-left: 0;
+    }
+
+    .timer {
+        align-self: flex-end;
+    }
 }
