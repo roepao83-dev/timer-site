@@ -52,28 +52,24 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 
-// ================= СОЗДАНИЕ ПОЛЕЙ =================
+// ===== СОЗДАНИЕ ПОЛЕЙ =====
 const container = document.querySelector(".hero_container.active");
 
-// поле даты
 const dateInput = document.createElement("input");
 dateInput.type = "date";
 dateInput.id = "dateInput";
 
-// поле времени
 const timeInput = document.createElement("input");
 timeInput.type = "time";
 timeInput.id = "timeInput";
 
-// кнопка
 const button = document.querySelector(".hero_container-live");
 
-// вставка
 container.insertBefore(dateInput, button);
 container.insertBefore(timeInput, button);
 
 
-// ================= СОХРАНЕНИЕ =================
+// ===== СОХРАНЕНИЕ =====
 function saveEvent() {
     const text = document.getElementById("eventInput").value;
     const date = document.getElementById("dateInput").value;
@@ -96,6 +92,9 @@ function saveEvent() {
         document.getElementById("eventInput").value = "";
         document.getElementById("dateInput").value = "";
         document.getElementById("timeInput").value = "";
+
+        // переход на главную
+        window.location.href = "index.html";
     })
     .catch((error) => {
         console.error(error);
