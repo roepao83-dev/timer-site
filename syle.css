@@ -137,10 +137,16 @@ input[type="time"] {
     color: var(--dark); /* 🔥 ВАЖНО */
     border: none;
     padding: 5px;
+    color: black !important;
+    -webkit-text-fill-color: black !important;
 }
 input::placeholder {
     color: var(--dark);
 }
 input:hover::placeholder{
     opacity: 80%;
+}
+input {
+    color: black !important;
+    -webkit-text-fill-color: black !important;
 }
