@@ -6,6 +6,10 @@
     <title>Time</title>
 <link rel="stylesheet" href="syle.css">
 <link rel="shortcut icon" href="images/logotip" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&display=swap" rel="stylesheet">
 </head>
 <body>
     
@@ -39,9 +43,11 @@
         </div>
     </section>
    </main>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script>
+// 🔥 ИНИЦИАЛИЗАЦИЯ (ОДИН РАЗ!)
 const firebaseConfig = {
   apiKey: "AIzaSyC0AZQoNHdRKuOReUWlKebgrjWjY235aLI",
   authDomain: "timer-6e144.firebaseapp.com",
@@ -93,14 +99,15 @@ function saveEvent() {
         document.getElementById("dateInput").value = "";
         document.getElementById("timeInput").value = "";
 
-        // переход на главную
+        // 👉 переход на главную
         window.location.href = "index.html";
     })
     .catch((error) => {
         console.error(error);
-        alert("Ошибка!");
+        alert("Ошибка сохранения!");
     });
 }
 </script>
+
 </body>
 </html>
