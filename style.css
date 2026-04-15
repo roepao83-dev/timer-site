@@ -12,9 +12,11 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* 🔥 важно */
 }
+
 body {
-    background: linear-gradient(200deg,  var(--gray), var(--white));
+    background: linear-gradient(200deg, var(--gray), var(--white));
 }
 
 .time{
@@ -46,6 +48,7 @@ body {
 .header_countainer{
     max-width: 1069px;
     margin-inline: auto;
+    padding: 0 15px;
 }
 
 .header_nav{
@@ -88,26 +91,12 @@ ul{
     padding-block: 50px;
 }
 
-.hero_title{
-    line-height: 77px;
-    font-weight: 700;
-    font-size: 15px;
-}
-
-.hero_desc{
-    font-family:"Mulish", sans-serif;
-    font-size: 20px;
-    line-height: 30px;
-}
-
 .hero_container{
     position: relative;
     min-height: 600px;
 }
 
-
 .hero_text {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -115,12 +104,12 @@ ul{
 }
 
 .hero_text-item{
-    padding: 0 20px 0 150px;
+    padding-left: 150px;
     font-size: 35px;
 }
 
 .hero_text-list{
-    padding: 0 20px 0 150px;
+    padding-left: 150px;
     color: var(--dark);
     font-size: 20px;
 }
@@ -136,13 +125,12 @@ ul{
 .event-item {
     display: flex;
     align-items: center;
-    background: #f3f3f3;
     padding: 12px 15px;
     border-radius: 10px;
-    width: 520px;
-    box-sizing: border-box;
+    width: 100%;              /* 🔥 вместо 520px */
+    max-width: 520px;        /* 🔥 ограничение */
     gap: 10px;
-    background: linear-gradient(100deg, var(--blue),var(--aque))
+    background: linear-gradient(100deg, var(--blue),var(--aque));
 }
 
 .event-item button {
@@ -153,10 +141,6 @@ ul{
     border-radius: 5px;
     cursor: pointer;
     min-width: 80px;
-}
-
-.event-item button:hover {
-    opacity: 0.8;
 }
 
 .event-item span {
@@ -175,42 +159,48 @@ ul{
     white-space: nowrap;
 }
 
-/* 🔥 АДАПТИВ ДЛЯ ТЕЛЕФОНА */
+/* 📱 АДАПТИВ */
 @media (max-width: 768px) {
 
-    .hero_container {
-        display: flex;
+    .header_nav {
         flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero_container {
+        min-height: auto;
         align-items: center;
     }
 
-    .hero_images {
-        position: static;
-        transform: none;
-        width: 250px;
-        height: auto;
-        margin-top: 20px;
+    .hero_text-item,
+    .hero_text-list {
+        padding: 0;
+        text-align: center;
     }
 
-    .hero_text-item,
-    .hero_text-list,
     #events {
-        padding: 0 20px;
+        padding: 0;
+        align-items: center;
+        width: 100%;
     }
 
     .event-item {
-        width: 100%;
-        max-width: 350px;
+        max-width: 95%;
         flex-direction: column;
         align-items: flex-start;
     }
 
+    .event-item span {
+        max-width: 100%;
+    }
+
     .btn-box {
+        width: 100%;
+        justify-content: space-between;
         margin-left: 0;
     }
 
     .timer {
         align-self: flex-end;
-
     }
 }
