@@ -6,6 +6,11 @@
     <title>Time</title>
 <link rel="stylesheet" href="style.css">
 <link rel="shortcut icon" href="images/logotip" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&display=swap" rel="stylesheet">
+
 </head>
 <body>
    <header class="time">
@@ -32,7 +37,7 @@
                     <div id="events"></div>
                 </div>    
             </div>
-            <img class="hero_images" src="images/chasi" alt="" width="400" height="500">
+           
         </div>
     </section>
    </main>
@@ -41,6 +46,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
+    
 const eventsContainer = document.getElementById("events");
 
 // 🔥 Firebase
@@ -54,7 +60,17 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 let events = [];
+function getNextDate(dateString) {
+    let eventDate = new Date(dateString);
+    const now = new Date();
 
+    // крутим пока дата в прошлом
+    while (eventDate < now) {
+        eventDate.setFullYear(eventDate.getFullYear() + 1);
+    }
+
+    return eventDate;
+}
 // 🔥 ЗАГРУЗКА ИЗ FIREBASE
 function loadEvents() {
     db.collection("events").get().then(snapshot => {
@@ -88,7 +104,7 @@ function renderEvents() {
 
         function updateTimer() {
             const now = new Date();
-            const eventDate = new Date(event.date);
+            const eventDate = getNextDate(event.date);
             const diff = eventDate - now;
 
             if (diff <= 0) {
@@ -178,7 +194,8 @@ function getClosestEvent(events) {
     let minDiff = Infinity;
 
     events.forEach(event => {
-        const diff = new Date(event.date) - now;
+        const eventDate = getNextDate(event.date);
+const diff = eventDate - now;
 
         if (diff > 0 && diff < minDiff) {
             minDiff = diff;
