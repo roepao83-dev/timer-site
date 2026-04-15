@@ -6,17 +6,22 @@
     --orange:#ff7829;
     --white: #ffffff;
     --while: #d6c99d;
+    --brown:#654321;
 }
 
 * {
     margin: 0;
     padding: 0;
 }
+body{
+    background: linear-gradient(150deg, var(--gray), var(--white));
+}
 .time{
     padding-block: 30px ; 
 }
 .image{
     transition: 0.5s;
+    mix-blend-mode: multiply;
 }
 .knock{
     font-weight: 700;
@@ -24,14 +29,14 @@
     color: var(--gray);
     letter-spacing: -0.53px;
     padding: 19px 50px;
-    background-color: var(--orange);
+    background: radial-gradient(circle, var(--while), var(--brown));
     border-radius: 15px;
     transition: 0.3s;
 }
 .knock.speashel{
     color:var(--dark);
     border-bottom: var(--blue) solid;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
 }
     
 
@@ -62,6 +67,7 @@ ul{
     font-size: 20px;
     color: var(--gray);
     transition: 0.3s;
+    font-family: "BIZ UDPGothic", sans-serif;
 }
 .header_list-link.active{
     color:var(--gray);
@@ -109,13 +115,27 @@ ul{
 
 .hero_container-item{
     font-size: 25px;
+    background: linear-gradient(140deg, var(--aque), var(--blue));
 }
 .hero_container-live{
     font-size: 25px; 
-    margin-left: 5px;
+    background: linear-gradient(160deg, var(--aque), var(--blue));
 }
-input[type="date"],
+input[type="date"]{
+    font-size: 20px;
+    margin-top: 10px;
+    display: flex;
+    background: linear-gradient(180deg, var(--aque), var(--blue));
+}
 input[type="time"] {
     font-size: 20px;
     margin-top: 10px;
+    display: flex;
+    background: linear-gradient(200deg, var(--aque), var(--blue));
+}
+input::placeholder {
+    color: var(--dark);
+}
+input:hover::placeholder{
+    opacity: 80%;
 }
